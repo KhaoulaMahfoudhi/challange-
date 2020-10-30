@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+.UserList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 10px 10px 10px;
+}
+
+.UserCards{
+  margin: 10px 10px 10px 10px;
+}
+.app-link{
+  margin: 10px;
+  text-decoration: none !important;
+  color: white !important;
+}
+.app-link :hover{
+  color: #17a2b8 !important;
+}
+.admin-link{
+  margin: 10px;
+  text-decoration: none !important;
+  color: #17a2b8 !important;
+}
+.admin-link :hover{
+  color: rgb(199, 110 , 8) !important;
+}
