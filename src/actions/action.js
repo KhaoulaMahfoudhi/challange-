@@ -1,36 +1,50 @@
-import axios from 'axios';
-export const FETCH_USER_REQUEST ='FETCH_USER_REQUEST';
-export const FETCH_USER_SUCCESS ='FETCH_USER_SUCCESS';
-export const FETCH_USER_FAILURE ='export const';
-export const fetchUsersRequest = () =>{
-    return {
-        type: FETCH_USER_REQUEST
-    }
-}
-export const fetchUsersSuccess = (users) =>{
-    return {
-        type: FETCH_USER_SUCCESS,
-        playload : users
-    }
-}
-export const fetchUsersFailure = (error) =>{
-    return {
-        type: FETCH_USER_FAILURE,
-        playload : error
-    }
-}
+const axios = require("axios");
+export const GET_USERS = "GET_USERS";
+export const GET_POSTS = "GET_POSTS";
+export const GET_COMMENTS = "GET_COMMENTS";
+export const getUsers = (users) => {
+  return {
+    type: "GET_USERS",
+    payload: users,
+  };
+};
 
-export const fetchUsers =() =>{
-    return (dispatch) =>{
-        dispatch(fetchUsersRequest)
-axios.get("https://jsonplaceholder.typicode.com/users")
-.then(response => {
-    const users = response.data
-    dispatch(fetchUsersSuccess(users))
-})
-.catch(error => {
-    const errorMsg = error.message
-    dispatch(fetchUsersFailure(errorMsg))
-})
-    }
-}
+export const getPosts = (posts) => {
+  return {
+    type: "GET_POSTS",
+    payload: posts,
+  };
+};
+
+export const getComments = (comments) => {
+  return {
+    type: "GET_COMMENTS",
+    payload: comments,
+  };
+};
+
+export const fetchUsers = () => {
+  return (dispatch) => {
+    axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
+      dispatch(getUsers(response.data));
+    });
+  };
+};
+
+export const fetchPosts = () => {
+  return (dispatch) => {
+    axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
+      dispatch(getPosts(response.data));
+    });
+  };
+};
+
+export const fetchComments = () => {
+  return (dispatch) => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/comments")
+      .then((response) => {
+        dispatch(getComments(response.data));
+      });
+  };
+};

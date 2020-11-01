@@ -1,29 +1,31 @@
-import { FETCH_USER_FAILURE, FETCH_USER_REQUEST, FETCH_USER_SUCCESS } from "../actions/action";
-import {fetchUsers} from "../actions/action"
-const UserReducer =(state = fetchUsers , action) =>{
-    switch(action.type){
-        case  FETCH_USER_REQUEST:
-            return {
-                ...state,
-                loading : true
-            }
-            case  FETCH_USER_SUCCESS:
-            return {
-                loading : false,
-                users: action.playload,
-                error: ''
-            }
-            case  FETCH_USER_FAILURE:
-            return {
-                loading : false,
-                users: [],
-                error: action.playload
-            }
-            default: return state
-    }
+import {GET_USERS, GET_POSTS, GET_COMMENTS } from "../actions/action";
+const initState = {
+  users: [],
+  posts: [],
+  comments: [],
+};
+
+function Reducer(state = initState, { type, payload }) {
+  switch (type) {
+    case GET_USERS:
+      return {
+        ...state,
+        users: payload,
+      };
+    case GET_POSTS:
+      return {
+        ...state,
+        posts: payload,
+      };
+    case GET_COMMENTS:
+      return {
+        ...state,
+        comments: payload,
+      };
+
+    default:
+      return state;
+  }
 }
- export default UserReducer
 
-
-
-    
+export default Reducer;
